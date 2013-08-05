@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style type="text/css">
+        *{box-sizing: border-box;}
+
+        body {
+            background: #e2e2e2;
+        }
+
+        .pageHeader,
+        .mainContent,
+        .pageFooter {
+            background: #fff;
+            max-width: 600px;
+            min-width: 300px;
+            width: 90%;
+            *width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+            border: solid 2px #000;
+        }
+        
+        .pageHeader {
+            border-bottom: 0;
+        }
+        
+        .pageHeader .logo img {
+            border: 0;
+        }
+        
+        .pageHeader .mainMenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .pageHeader .mainMenu ul li {
+            display: inline-block;
+            position: relative;
+            margin: 5px 20px;
+            vertical-align: top;
+            *display: inline;
+            zoom: 1;
+        }
+        
+        .pageHeader .mainMenu ul ul {
+            z-index: 8888;
+            background: #05aaaa;
+            padding: 2px 0;
+            min-width: 100%;
+        }
+        
+        .pageHeader .mainMenu ul ul li {
+            margin: 5px 0;
+            display: block;
+        }
+
+        .pageHeader a {
+            color: #777;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        
+        .pageHeader a:hover {
+            text-decoration: underline;
+        }
+        
+        .pageHeader li li a {
+            color: #fff;
+        }
+        
+        .mainContent {
+            border-top: 0;
+            border-bottom: 0;
+        }
+        
+        .mainContent h2 {
+            color: #960000;
+            font-style: italic;
+        }
+        
+        .mainContent img {
+            float: right;
+            margin: 0 0 10px 10px;
+        }
+
+        .pageFooter {
+            border-top: 0;
+        }
+        
+        .pageFooter p {
+            border-top: solid 1px #cecece;
+            margin: 0;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="pageHeader">
+        <h1 class="logo">
+            <a href="/"><img src="img/logo.png" alt="A Random Logo" /></a>
+        </h1>
+
+        <div class="mainMenu">
+            <ul class="level_1">
+                <li><a href="/">Home</a></li>
+                <li>
+                    <a href="#">An Item</a>
+                    <ul class="level_2">
+                        <li><a href="#">Subitem1</a></li>
+                        <li><a href="#">Subitem2</a></li>
+                        <li><a href="#">Subitem3</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#">An Effective Item</a>
+                    <ul class="level_2">
+                        <li><a href="#">A link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mainContent">
+        <h2>Cupcake Ipsum</h2>
+        <p>
+            <img src="img/cat.jpg" alt="Cat" class="mainImage" />
+            Caramels pudding cheesecake sweet roll tootsie roll chocolate cake soufflé fruitcake cupcake. Apple pie gingerbread soufflé donut gummi bears chocolate bear claw cotton candy. Apple pie cookie toffee muffin marshmallow. 
+            Oat cake dragée donut lemon drops unerdwear.com jelly beans. Biscuit chupa chups apple pie sweet marshmallow candy. Candy macaroon cookie gummi bears bonbon soufflé biscuit caramels tiramisu. Tiramisu chocolate cake halvah. Oat cake jelly beans lemon drops
+            bonbon oat cake sugar plum. Carrot cake liquorice liquorice dessert wafer unerdwear.com jujubes sweet roll. Candy canes applicake cotton candy. Marshmallow marshmallow danish sesame snaps. Topping gingerbread sweet roll icing carrot cake carrot cake.
+        </p>
+    </div>
+
+    <div class="pageFooter">
+        <p>
+            <a href="#">Contact Link</a>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        // Polyfill for querySelectorAll - https://gist.github.com/connrs/2724353
+        document.querySelectorAll||(document.querySelectorAll=function(a){var b=document,c=b.documentElement.firstChild,d=b.createElement("STYLE");return c.appendChild(d),b.__qsaels=[],d.styleSheet.cssText=a+"{x:expression(document.__qsaels.push(this))}",window.scrollBy(0,0),b.__qsaels});
+
+        // --
+        // This enables dropdown in the main menu
+        // --
+        
+        // First set some styles for the menu items
+        var items = document.querySelectorAll('.level_2');
+        var i = 0;
+        for(i = 0; i < items.length; i++) {
+            items[i].style.display = 'none';
+            items[i].style.position = 'absolute';
+            items[i].style.top = '100%';
+            items[i].style.left = '0';
+
+            // The parent LI needs an mouseon and out event that toggles this items visibility
+            items[i].parentElement.onmouseover = function(target) {
+                return function() {
+                    target.style.display = 'block';
+                    return false;
+                };
+            }(items[i]);
+            
+            items[i].parentElement.onmouseout = function(target) {
+                return function() {
+                    target.style.display = 'none';
+                    return false;
+                };
+            }(items[i]);
+        }
+    </script>
+</body>
+</html>
